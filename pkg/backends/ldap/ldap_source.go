@@ -39,7 +39,7 @@ var (
 	debug = Debug("staffio:ldap")
 )
 
-// Add a new source (LDAP directory) to the global pool
+// NewSource adds a new source (LDAP directory) to the global pool
 func NewSource(cfg *Config) (*ldapSource, error) {
 	if cfg.Base == "" {
 		return nil, ErrEmptyBase

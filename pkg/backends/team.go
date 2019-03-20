@@ -85,7 +85,7 @@ func (s *teamStore) Delete(id int) error {
 	})
 }
 
-// Add members
+// AddMember adds members
 func (s *teamStore) AddMember(id int, uids ...string) error {
 	return withTxQuery(func(db dbTxer) (err error) {
 		return dbTeamAddMember(db, id, uids)
@@ -107,7 +107,7 @@ func dbTeamAddMember(db dbTxer, id int, uids []string) (err error) {
 	return
 }
 
-// Remove members
+// RemoveMember removes members
 func (s *teamStore) RemoveMember(id int, uids ...string) error {
 	return withTxQuery(func(db dbTxer) (err error) {
 		var arr []string
@@ -122,7 +122,7 @@ func (s *teamStore) RemoveMember(id int, uids ...string) error {
 	})
 }
 
-// Add Manager
+// AddManager adds Manager
 func (s *teamStore) AddManager(id int, uid string) error {
 	return withTxQuery(func(db dbTxer) (err error) {
 		uid = strings.ToLower(uid)
@@ -135,7 +135,7 @@ func (s *teamStore) AddManager(id int, uid string) error {
 	})
 }
 
-// Remove Manager
+// RemoveManager removes Manager
 func (s *teamStore) RemoveManager(id int, uid string) error {
 	return withTxQuery(func(db dbTxer) (err error) {
 		_, err = db.Exec("DELETE FROM team_leader WHERE team_id = $1 AND leader = $2",
